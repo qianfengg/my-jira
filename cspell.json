@@ -1,0 +1,19 @@
+{
+  "version": "0.2",
+
+  "language": "en",
+
+  "words": [],
+
+  "flagWords": [],
+
+  "ignorePaths": [
+    "node_modules/**",
+    "package.json",
+    "package-lock.json",
+    "cspell.json",
+    "commitlint.config.js",
+    "public/**",
+    "src/reportWebVitals.ts"
+  ]
+}
