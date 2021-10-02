@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-const domain = process.env.REACT_APP_API_URL;
+import React from "react";
 
 export interface SearchPanelParam {
   name: string;

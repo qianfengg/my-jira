@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import List, { Project } from "./list";
 import SearchPanel, { SearchPanelParam, User } from "./search-panel";
 import qs from "qs";
-import { cleanObject, useDebounce, useMount } from "utils";
+import { cleanObject, useDebounce } from "utils";
 
 const domain = process.env.REACT_APP_API_URL;
 
-export default function ProjectList() {
+export default function ProjectListScreen() {
   const [param, setParam] = useState<SearchPanelParam>({
     name: "",
     personId: "",
   });
   const [users, setUsers] = useState<User[]>([]);
-  useMount(() => {
+  useEffect(() => {
     fetch(`${domain}/users`).then(async (response) => {
       if (response.ok) {
         setUsers(await response.json());
       }
     });
-  });
+  }, []);
   const [projectList, setProjectList] = useState<Project[]>([]);
   const debouncedParam = useDebounce(param, 200);
   useEffect(() => {
