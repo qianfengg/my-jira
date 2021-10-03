@@ -7,6 +7,7 @@ export interface SearchPanelParam {
 export interface User {
   id: number;
   name: string;
+  token: string;
 }
 
 export interface SearchPanelProps {
