@@ -14,6 +14,7 @@
     "cspell.json",
     "commitlint.config.js",
     "public/**",
-    "src/reportWebVitals.ts"
+    "src/reportWebVitals.ts",
+    "README.md"
   ]
 }
