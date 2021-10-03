@@ -12,7 +12,7 @@ export const handleUserResponse = ({ user }: { user: User }) => {
 };
 
 export const login = (data: { username: string; password: string }) => {
-  fetch(`${domain}/login`, {
+  return fetch(`${domain}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,12 +22,14 @@ export const login = (data: { username: string; password: string }) => {
     if (response.ok) {
       const result = await response.json();
       return handleUserResponse(result);
+    } else {
+      return Promise.reject(data);
     }
   });
 };
 
 export const register = (data: { username: string; password: string }) => {
-  fetch(`${domain}/register`, {
+  return fetch(`${domain}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,8 +39,11 @@ export const register = (data: { username: string; password: string }) => {
     if (response.ok) {
       const result = await response.json();
       return handleUserResponse(result);
+    } else {
+      return Promise.reject(data);
     }
   });
 };
 
-export const logout = () => window.localStorage.removeItem(localStorageKey);
+export const logout = async () =>
+  window.localStorage.removeItem(localStorageKey);
