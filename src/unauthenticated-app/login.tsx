@@ -15,11 +15,15 @@ export default function LoginScreen() {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">用户名</label>
-        <input type="text" id={"username"} />
+        <input type="text" id={"username"} autoComplete="username" />
       </div>
       <div>
         <label htmlFor="password">密码</label>
-        <input type="password" id={"password"} />
+        <input
+          type="password"
+          id={"password"}
+          autoComplete="current-password"
+        />
       </div>
       <div>
         <button type="submit">登陆</button>
