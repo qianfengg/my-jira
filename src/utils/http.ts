@@ -28,7 +28,6 @@ export const http = async (
   return fetch(`${apiUrl}/${endpoint}`, config).then(async (response) => {
     if (response.status === 401) {
       await auth.logout();
-      window.location.reload();
       return Promise.reject({ message: "请重新登陆" });
     }
     const data = await response.json();
