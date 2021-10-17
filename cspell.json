@@ -3,7 +3,7 @@
 
   "language": "en",
 
-  "words": ["commitlint"],
+  "words": ["commitlint", "antd"],
 
   "flagWords": [],
 
@@ -13,6 +13,7 @@
     "package-lock.json",
     "cspell.json",
     "commitlint.config.js",
+    "craco.config.js",
     "public/**",
     "src/reportWebVitals.ts",
     "README.md"

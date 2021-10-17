@@ -1,5 +1,6 @@
 import React from "react";
 import { User } from "./search-panel";
+import { Table } from "antd";
 
 export interface Project {
   id: number;
@@ -15,23 +16,25 @@ export interface ListProps {
 
 export default function List({ projectList, users }: ListProps) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>工程名</th>
-          <th>负责人</th>
-          <th>组织</th>
-        </tr>
-      </thead>
-      <tbody>
-        {projectList.map((project) => (
-          <tr key={project.id}>
-            <td>{project.name}</td>
-            <td>{users.find((user) => user.id === project.personId)?.name}</td>
-            <td>{project.organization}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <Table
+      pagination={false}
+      dataSource={projectList}
+      columns={[
+        {
+          title: "工程名",
+          dataIndex: "name",
+          sorter: (a, b) => a.name.localeCompare(b.name),
+        },
+        {
+          title: "负责人",
+          render: (value, project) => (
+            <span>
+              {users.find((user) => user.id === project.personId)?.name}
+            </span>
+          ),
+        },
+        { title: "组织", dataIndex: "organization" },
+      ]}
+    ></Table>
   );
 }

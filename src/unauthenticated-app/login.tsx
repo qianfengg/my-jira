@@ -1,33 +1,43 @@
 import { useAuth } from "context/auth-context";
-import React, { FormEvent } from "react";
+import React from "react";
+import { Form, Input, Button } from "antd";
 
 export default function LoginScreen() {
   const { login } = useAuth();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    const username = (evt.currentTarget.elements[0] as HTMLInputElement).value;
-    const password = (evt.currentTarget.elements[1] as HTMLInputElement).value;
-    login({ username, password });
+  const handleSubmit = (values: { username: string; password: string }) => {
+    login(values);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">用户名</label>
-        <input type="text" id={"username"} autoComplete="username" />
-      </div>
-      <div>
-        <label htmlFor="password">密码</label>
-        <input
+    <Form onFinish={handleSubmit}>
+      <Form.Item
+        name={"username"}
+        rules={[{ required: true, message: "请输入用户名" }]}
+      >
+        <Input
+          type="text"
+          id={"username"}
+          autoComplete="username"
+          placeholder={"请输入用户名"}
+        />
+      </Form.Item>
+      <Form.Item
+        name={"password"}
+        rules={[{ required: true, message: "请输入密码" }]}
+      >
+        <Input
+          placeholder={"请输入密码"}
           type="password"
           id={"password"}
           autoComplete="current-password"
         />
-      </div>
-      <div>
-        <button type="submit">登陆</button>
-      </div>
-    </form>
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType={"submit"} type={"primary"}>
+          登陆
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }
