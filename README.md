@@ -5,6 +5,8 @@
 - React + React Hooks + Typescript
 - Ant Design
 - [jwt](https://jwt.io/)
+- [emotion](https://emotion.sh/docs/introduction) - vscode插件安装（vscode-styled-components
+）
 
 ## 工程化相关
 
