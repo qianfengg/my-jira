@@ -19,6 +19,7 @@ export interface ListProps {
 export default function List({ projectList, users }: ListProps) {
   return (
     <Table
+      rowKey={'id'}
       pagination={false}
       dataSource={projectList}
       columns={[
@@ -37,12 +38,14 @@ export default function List({ projectList, users }: ListProps) {
         },
         { title: "组织", dataIndex: "organization" },
         {
-          title: '创建时间',
+          title: "创建时间",
           render: (value, project) => (
             <span>
-              {project.created ? dayjs(project.created).format('YYYY-MM-DD') : '无'}
+              {project.created
+                ? dayjs(project.created).format("YYYY-MM-DD")
+                : "无"}
             </span>
-          )
+          ),
         },
       ]}
     ></Table>
