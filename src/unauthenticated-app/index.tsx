@@ -19,7 +19,7 @@ export default function UnauthenticatedApp() {
         </Title>
         {isRegister ? <RegisterScreen /> : <LoginScreen />}
         <Divider/>
-        <Button onClick={(evt) => setIsRegister(!isRegister)}>
+        <Button type="link" onClick={(evt) => setIsRegister(!isRegister)}>
           {isRegister ? "已经有账号了？直接登录" : "没有账号？注册新账号"}
         </Button>
       </ShadowCard>

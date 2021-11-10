@@ -1,12 +1,14 @@
 import React from "react";
 import { User } from "./search-panel";
 import { Table } from "antd";
+import dayjs from "dayjs";
 
 export interface Project {
   id: number;
   name: string;
   personId: number;
   organization: string;
+  created: number;
 }
 
 export interface ListProps {
@@ -34,6 +36,14 @@ export default function List({ projectList, users }: ListProps) {
           ),
         },
         { title: "组织", dataIndex: "organization" },
+        {
+          title: '创建时间',
+          render: (value, project) => (
+            <span>
+              {project.created ? dayjs(project.created).format('YYYY-MM-DD') : '无'}
+            </span>
+          )
+        },
       ]}
     ></Table>
   );
