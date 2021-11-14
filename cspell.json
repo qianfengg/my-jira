@@ -16,6 +16,7 @@
     "craco.config.js",
     "public/**",
     "src/reportWebVitals.ts",
+    "src/assets/**",
     "README.md"
   ]
 }
