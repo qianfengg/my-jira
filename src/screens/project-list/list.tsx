@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 export interface Project {
   id: number;
   name: string;
-  personId: number;
+  personId: number | string;
   organization: string;
   created: number;
 }
@@ -18,7 +18,7 @@ export interface ListProps extends TableProps<Project> {
 export default function List({ users, ...props }: ListProps) {
   return (
     <Table
-      rowKey={'id'}
+      rowKey={"id"}
       pagination={false}
       columns={[
         {

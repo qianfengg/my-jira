@@ -1,10 +1,6 @@
 import { Input, Select, Form } from "antd";
 import React from "react";
-
-export interface SearchPanelParam {
-  name: string;
-  personId: string;
-}
+import { Project } from "./list";
 export interface User {
   id: number;
   name: string;
@@ -12,7 +8,7 @@ export interface User {
 }
 
 export interface SearchPanelProps {
-  param: SearchPanelParam;
+  param: Partial<Project>;
   setParam: (param: SearchPanelProps["param"]) => void;
   users: User[];
 }
