@@ -11,7 +11,15 @@ const defaultState: State<null> = {
   stat: "idle",
 };
 
-export const useAsync = <D>(initialState?: State<D>) => {
+const defaultConfig = {
+  throwOnError: false,
+};
+
+export const useAsync = <D>(
+  initialState?: State<D>,
+  initialConfig?: typeof defaultConfig
+) => {
+  const config = { ...defaultConfig, ...initialConfig };
   const [state, setState] = useState<State<D>>({
     ...defaultState,
     ...initialState,
@@ -33,20 +41,23 @@ export const useAsync = <D>(initialState?: State<D>) => {
 
   const run = (promise: Promise<D>) => {
     if (!promise || !promise.then) {
-      throw new Error('run function param should use promise')
+      throw new Error("run function param should use promise");
     }
     setState({
       ...state,
-      stat: 'loading',
-    })
+      stat: "loading",
+    });
     return promise
       .then((data) => {
         setData(data);
-        return data
+        return data;
       })
       .catch((error) => {
         setError(error);
-        return error
+        if (config.throwOnError) {
+          return Promise.reject(error);
+        }
+        return error;
       });
   };
 
