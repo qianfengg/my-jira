@@ -17,6 +17,7 @@
     "public/**",
     "src/reportWebVitals.ts",
     "src/assets/**",
-    "README.md"
+    "README.md",
+    "build/**"
   ]
 }
