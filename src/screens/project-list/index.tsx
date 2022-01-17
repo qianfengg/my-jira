@@ -6,6 +6,7 @@ import { Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useDebounce } from "utils";
 import { useUsers } from "utils/user";
+import { Helmet } from "react-helmet";
 
 export default function ProjectListScreen() {
   const [param, setParam] = useState<Partial<Project>>({
@@ -19,6 +20,9 @@ export default function ProjectListScreen() {
   return (
     <Container>
       {/* {value.notExist} */}
+      <Helmet>
+        <title>项目列表</title>
+      </Helmet>
       <h1>项目列表</h1>
       <SearchPanel param={param} setParam={setParam} users={users || []} />
       {error ? (
