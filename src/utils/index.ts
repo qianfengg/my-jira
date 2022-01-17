@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 export const isVoid = (value: unknown) =>
   value === undefined || value === null || value === "";
 
@@ -14,10 +14,10 @@ export const cleanObject = (object: any) => {
 
 export const useMount = (callback: () => void) => {
   useEffect(() => {
-    callback()
+    callback();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-}
+  }, []);
+};
 
 export const useDebounce = <T>(value: T, delay?: number): T => {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -30,4 +30,21 @@ export const useDebounce = <T>(value: T, delay?: number): T => {
     };
   }, [value, delay]);
   return debouncedValue;
+};
+
+export const useDocumentTitle = (
+  title: string,
+  keepOnUnmount: boolean = true
+) => {
+  const oldTitle = useRef(document.title).current;
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+  useEffect(() => {
+    return () => {
+      if (!keepOnUnmount) {
+        document.title = oldTitle;
+      }
+    };
+  }, [keepOnUnmount, oldTitle]);
 };

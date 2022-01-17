@@ -4,9 +4,9 @@ import SearchPanel from "./search-panel";
 import styled from "@emotion/styled";
 import { Typography } from "antd";
 import { useProjects } from "utils/project";
-import { useDebounce } from "utils";
+import { useDebounce, useDocumentTitle } from "utils";
 import { useUsers } from "utils/user";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 export default function ProjectListScreen() {
   const [param, setParam] = useState<Partial<Project>>({
@@ -16,13 +16,14 @@ export default function ProjectListScreen() {
   const debouncedParam = useDebounce(param, 200);
   const { error, data: projectList, isLoading } = useProjects(debouncedParam);
   const { data: users } = useUsers();
+  useDocumentTitle("项目列表", false);
   // const value: any = undefined
   return (
     <Container>
       {/* {value.notExist} */}
-      <Helmet>
+      {/* <Helmet>
         <title>项目列表</title>
-      </Helmet>
+      </Helmet> */}
       <h1>项目列表</h1>
       <SearchPanel param={param} setParam={setParam} users={users || []} />
       {error ? (
