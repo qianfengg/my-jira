@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import ProjectScreen from "screens/project";
 
 export default function AuthenticatedApp() {
@@ -21,6 +21,7 @@ export default function AuthenticatedApp() {
               path={"/projects/:projectId/*"}
               element={<ProjectScreen />}
             ></Route>
+            <Route path="/" element={<Navigate to="/projects" />}></Route>
           </Routes>
         </Router>
       </Main>
