@@ -64,4 +64,6 @@ export default function AppProviders({
 }
 ```
 
-## TIPS
+## 其他
+
+- [React-Router6 版本的更新引起的路由用法变化](https://zhuanlan.zhihu.com/p/458799339)
