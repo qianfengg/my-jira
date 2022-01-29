@@ -8,6 +8,7 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route, Navigate } from "react-router";
 import ProjectScreen from "screens/project";
+import { resetRoute } from "utils";
 
 export default function AuthenticatedApp() {
   return (
@@ -35,7 +36,9 @@ const PageHeader = () => {
   return (
     <Header between>
       <HeaderLeft gap>
-        <SoftwareLogo width={"18rem"} color={"rgb(38, 132, 255)"} />
+        <Button type="link" onClick={resetRoute}>
+          <SoftwareLogo width={"18rem"} color={"rgb(38, 132, 255)"} />
+        </Button>
         <h3>项目</h3>
         <h3>用户</h3>
       </HeaderLeft>
