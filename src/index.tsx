@@ -1,3 +1,4 @@
+import "./wdyr"; // <--- first import
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -9,7 +10,7 @@ loadServer(() =>
   ReactDOM.render(
     <React.StrictMode>
       <AppProviders>
-        <DevTools/>
+        <DevTools />
         <App />
       </AppProviders>
     </React.StrictMode>,

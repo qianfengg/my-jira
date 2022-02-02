@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import List, { Project } from "./list";
+import React from "react";
+import List from "./list";
 import SearchPanel from "./search-panel";
 import styled from "@emotion/styled";
 import { Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useDebounce, useDocumentTitle } from "utils";
 import { useUsers } from "utils/user";
+import { useUrlQueryParam } from "utils/url";
 // import { Helmet } from "react-helmet";
 
 export default function ProjectListScreen() {
-  const [param, setParam] = useState<Partial<Project>>({
-    name: "",
-    personId: "",
-  });
+  const [param, setParam] = useUrlQueryParam(["name", "personId"]);
   const debouncedParam = useDebounce(param, 200);
   const { error, data: projectList, isLoading } = useProjects(debouncedParam);
   const { data: users } = useUsers();
@@ -43,3 +41,5 @@ export default function ProjectListScreen() {
 const Container = styled.div`
   padding: 3.2rem;
 `;
+
+ProjectListScreen.whyDidYouRender = false;
