@@ -17,6 +17,7 @@ export default function ProjectListScreen() {
     error,
     data: projectList,
     isLoading,
+    retry,
   } = useProjects(useDebounce(param, 200));
   const { data: users } = useUsers();
   // const value: any = undefined
@@ -37,6 +38,7 @@ export default function ProjectListScreen() {
         dataSource={projectList || []}
         users={users || []}
         loading={isLoading}
+        refresh={retry}
       />
     </Container>
   );

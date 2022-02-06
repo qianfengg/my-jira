@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 export const isVoid = (value: unknown) =>
-  value === undefined || value === null || value === "";
+  value === undefined || value === null || value === "" || value === 0;
 
 export const cleanObject = (object: any) => {
   const result = { ...object };
@@ -49,4 +49,4 @@ export const useDocumentTitle = (
   }, [keepOnUnmount, oldTitle]);
 };
 
-export const resetRoute = () => window.location.href = window.location.origin
+export const resetRoute = () => (window.location.href = window.location.origin);
