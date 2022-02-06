@@ -6,15 +6,19 @@ import { Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useDebounce, useDocumentTitle } from "utils";
 import { useUsers } from "utils/user";
-import { useUrlQueryParam } from "utils/url";
+import { useProjectSearchParam } from "./util";
 // import { Helmet } from "react-helmet";
 
 export default function ProjectListScreen() {
-  const [param, setParam] = useUrlQueryParam(["name", "personId"]);
-  const debouncedParam = useDebounce(param, 200);
-  const { error, data: projectList, isLoading } = useProjects(debouncedParam);
-  const { data: users } = useUsers();
   useDocumentTitle("项目列表", false);
+
+  const [param, setParam] = useProjectSearchParam();
+  const {
+    error,
+    data: projectList,
+    isLoading,
+  } = useProjects(useDebounce(param, 200));
+  const { data: users } = useUsers();
   // const value: any = undefined
   return (
     <Container>

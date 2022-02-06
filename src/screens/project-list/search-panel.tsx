@@ -1,4 +1,5 @@
-import { Input, Select, Form } from "antd";
+import { Input, Form } from "antd";
+import UserSelect from "components/user-select";
 import React from "react";
 import { Project } from "./list";
 export interface User {
@@ -8,7 +9,7 @@ export interface User {
 }
 
 export interface SearchPanelProps {
-  param: Partial<Project>;
+  param: Pick<Project, "name" | "personId">;
   setParam: (param: SearchPanelProps["param"]) => void;
   users: User[];
 }
@@ -33,7 +34,8 @@ export default function SearchPanel({
         />
       </Form.Item>
       <Form.Item>
-        <Select
+        <UserSelect
+          defaultOptionName={"负责人"}
           value={param.personId}
           onChange={(value) => {
             setParam({
@@ -41,14 +43,7 @@ export default function SearchPanel({
               personId: value,
             });
           }}
-        >
-          <Select.Option value="">负责人</Select.Option>
-          {users.map((user) => (
-            <Select.Option key={user.id} value={String(user.id)}>
-              {user.name}
-            </Select.Option>
-          ))}
-        </Select>
+        />
       </Form.Item>
     </Form>
   );
